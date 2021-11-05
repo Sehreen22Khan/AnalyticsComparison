@@ -22,12 +22,16 @@ export class ChartsComponent implements OnInit {
     this.bars();
     this.pie();
     this.donut();
+    window.onload = function () {
+      var loadTime = window.performance.timing.domContentLoadedEventEnd-window.performance.timing.navigationStart; 
+      console.log('Load Test :: Chart.js :: '+ loadTime);
+  }
   }
 
   private load(){
     var xyValues = [];
     xyValues.push({x:160, y:16});
-    for(var i=0;i<500000;i++){
+    for(var i=0;i<1500000;i++){
       xyValues.push({x:i%5, y:i%10});
     }
     
@@ -74,13 +78,21 @@ export class ChartsComponent implements OnInit {
           data: xyValues
         }]
       },
-      // options: {
-      //   legend: {display: false},
-      //   scales: {
-      //     xAxes: [{ticks: {min: 40, max:160}}],
-      //     yAxes: [{ticks: {min: 6, max:16}}],
-      //   }
-      // }
+      options: {
+        plugins: {
+          legend: {display: false},
+        },
+        scales: {
+          x: {
+            suggestedMin: 40,
+            suggestedMax: 160
+          },
+          y: {
+            suggestedMin: 6,
+            suggestedMax: 16
+          }
+        }
+      }
     });
   }
 
@@ -101,9 +113,11 @@ export class ChartsComponent implements OnInit {
         }]
       },
       options: {
-        // legend: {display: false},
+        plugins: {
+          legend: {display: false},
+        },
         scales: {
-          // yAxes: [{ticks: {min: 6, max:16}}],
+          yAxes: {min: 6, max:16},
         }
       }
     });
@@ -131,7 +145,9 @@ export class ChartsComponent implements OnInit {
         }]
       },
       options: {
-        // legend: {display: false}
+        plugins:{
+          legend: {display: false}
+        }
       }
     });
   }
@@ -153,14 +169,17 @@ export class ChartsComponent implements OnInit {
         }]
       },    
       options: {
-        // legend: {display: false},
-        // title: {
-        //   display: true,
-        //   text: "y = x * 2 + 7",
-        //   fontSize: 16
-        // }
+        plugins:{
+          legend: {display: false},
+          title: {
+            display: true,
+            text: "y = x * 2 + 7",
+            font: {weight: 'bold'}
+          }
+        },
       }
     });
+
     function generateData(value: string, i1: number, i2: number, step = 1) {
       for (let x = i1; x <= i2; x += step) {
         yValues.push(eval(value));
@@ -186,12 +205,14 @@ export class ChartsComponent implements OnInit {
         }]
       },    
       options: {
-        // legend: {display: false},
-        // title: {
-        //   display: true,
-        //   text: "y = x * 2 + 7",
-        //   fontSize: 16
-        // }
+        plugins:{
+          legend: {display: false},
+          title: {
+            display: true,
+            text: "y = x * 2 + 7",
+            font: {size: 16}
+          }
+        }
       }
     });
     function generateData(value: string, i1: number, i2: number, step = 1) {
@@ -217,11 +238,13 @@ export class ChartsComponent implements OnInit {
         }]
       },
       options: {
-        // legend: {display: false},
-        // title: {
-        //   display: true,
-        //   text: "World Wine Production 2018"
-        // }
+        plugins:{
+          legend: {display: false},
+          title: {
+            display: true,
+            text: "World Wine Production 2018"
+          }
+        }
       }
     });
   }
@@ -247,10 +270,12 @@ export class ChartsComponent implements OnInit {
         }]
       },
       options: {
-        // title: {
-        //   display: true,
-        //   text: "World Wide Wine Production 2018"
-        // }
+        plugins: {
+          title: {
+            display: true,
+            text: "World Wide Wine Production 2018"
+          }
+        }
       }
     });
   }
@@ -276,10 +301,12 @@ export class ChartsComponent implements OnInit {
         }]
       },
       options: {
-        // title: {
-        //   display: true,
-        //   text: "World Wide Wine Production 2018"
-        // }
+        plugins:{
+          title: {
+            display: true,
+            text: "World Wide Wine Production 2018"
+          }
+        }
       }
     });
   }

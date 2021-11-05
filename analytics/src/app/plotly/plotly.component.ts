@@ -22,12 +22,16 @@ export class PlotlyComponent implements OnInit {
     this.donut();
     this.sine();
     this.cosine();
+  //   window.onload = function () {
+  //     var loadTime = window.performance.timing.domContentLoadedEventEnd-window.performance.timing.navigationStart; 
+  //     console.log('Load Test :: Plotly :: '+ loadTime);
+  // }
   }
 
   private load(){    
     var xArray = [];
     var yArray = [];
-    for(var i=0;i<500000;i++){
+    for(var i=0;i<1500000;i++){
       xArray.push(i%5);
       yArray.push(i%10);
     }
@@ -55,7 +59,7 @@ export class PlotlyComponent implements OnInit {
     y: [1, 9, 4, 7, 5, 2, 4],
     mode: 'markers',
     marker: {
-        size: [20, 40, 25, 10, 60, 90, 30],
+        // size: [20, 40, 25, 10, 60, 90, 30],
     }
 };
 
